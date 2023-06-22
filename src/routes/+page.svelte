@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+
+	onMount(() => console.log('Mounted home page'));
+	onDestroy(() => console.log('Destroyed home page'));
+</script>
+
+<h1>Home Page</h1>
