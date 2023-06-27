@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { PageData } from './$types'
+
   // import { onMount, onDestroy } from 'svelte';
 
   // onMount(() => console.log('Mounted home page'));
@@ -13,22 +15,36 @@
   // 	});
   // }
 
-  import type { Post } from '@prisma/client'
+  // import type { Post } from '@prisma/client'
 
-  async function getPosts() {
-    const response = await fetch('api/posts')
-    const posts: Post[] = await response.json()
+  // async function getPosts() {
+  //   const response = await fetch('api/posts')
+  //   const posts: Post[] = await response.json()
 
-    return posts
-  }
+  //   return posts
+  // }
+
+  export let data: PageData
+
+  $: ({ posts } = data)
 </script>
 
 <h1>Posts</h1>
 
-{#await getPosts()}
+<p>Showing {posts.length} posts: 'Caching on disk example'</p>
+
+{#each posts as { slug, title }}
+  <ul>
+    <li>
+      <a href="/posts/{slug}">{title}</a>
+    </li>
+  </ul>
+{/each}
+
+<!-- client side rendering {#await getPosts()}
   <p>Loading...</p>
 {:then posts}
-  <p>Showing {posts.length} posts</p>
+  <p>Showing {posts.length} posts 'Caching test on disk'</p>
 
   {#each posts as { slug, title }}
     <ul>
@@ -36,13 +52,13 @@
         <a href="/posts/{slug}">{title}</a>
       </li>
     </ul>
-  {/each}
-  <!-- <pre>
+  {/each} -->
+<!-- <pre>
 		{JSON.stringify(posts, null, 2)}
 	</pre> -->
-{:catch error}
+<!-- {:catch error}
   <p>error.message</p>
-{/await}
+{/await} -->
 
 <!-- <h1>Newsletter</h1>
 
