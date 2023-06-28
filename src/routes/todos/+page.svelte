@@ -1,9 +1,21 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
-  import type { ActionData, PageData } from './$types'
+  import type { ActionData, PageData, SubmitFunction } from './$types'
 
   export let data: PageData
   export let form: ActionData
+
+  let loading = false
+
+  const addTodo: SubmitFunction = () => {
+    // do something before the form submits
+    loading = true
+
+    return async ({ update }) => {
+      loading = false
+      await update()
+    }
+  }
 </script>
 
 <ul>
@@ -18,14 +30,18 @@
   {/each}
 </ul>
 
-<form action="?/addTodo" method="POST" use:enhance>
+<form action="?/addTodo" method="POST" use:enhance={addTodo}>
   <input type="text" name="todo" value={form?.todo ?? ''} />
   {#if form?.missing}
     <p class="error">This field is required</p>
   {/if}
-  <button type="submit">Add</button>
+  <button aria-busy={loading} class:secondary={loading} type="submit">
+    {#if !loading}
+      Add Todo
+    {/if}
+  </button>
 
-  <button formaction="?/clearTodos" type="submit">Clear</button>
+  <button class="secondary" formaction="?/clearTodos" type="submit">Clear</button>
 </form>
 
 {#if form?.success}
