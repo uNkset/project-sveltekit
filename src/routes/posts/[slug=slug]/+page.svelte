@@ -17,3 +17,21 @@
 <div class="content">
   {@html data.post.content}
 </div>
+
+<div class="posts">
+  <h3>More Posts:</h3>
+
+  <ul>
+    {#each data.posts as { slug, title }}
+      <li>
+        <a href="/posts/{slug}">{title}</a>
+      </li>
+    {/each}
+  </ul>
+</div>
+
+<style>
+  .posts {
+    margin-top: 10rem;
+  }
+</style>
