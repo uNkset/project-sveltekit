@@ -1,5 +1,7 @@
-<h1>Posts Page</h1>
+<h1>Posts</h1>
 
-<p>
+<!-- <p>
 	you can <a href="/posts/create">+create</a> or edit your posts here.
-</p>
+</p> -->
+
+<p>Select post to display.</p>
