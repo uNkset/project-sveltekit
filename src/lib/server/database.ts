@@ -27,7 +27,7 @@ export function addTodo(text: string) {
 }
 
 export function removeTodo(id: number) {
-  todos = todos.filter((todo) => todo.id === id)
+  todos = todos.filter((todo) => todo.id !== id)
 }
 
 export function clearTodos() {
