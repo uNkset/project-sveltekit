@@ -24,3 +24,13 @@
 </nav>
 
 <slot />
+
+<!-- <style>
+  :global(body) {
+    padding: 2rem;
+  }
+
+  :global(input, button) {
+    border-radius: 1rem;
+  }
+</style> -->
