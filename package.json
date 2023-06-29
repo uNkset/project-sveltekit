@@ -36,6 +36,7 @@
 		"seed": "npx vite-node prisma/seed.ts"
 	},
 	"dependencies": {
-		"@prisma/client": "^4.16.1"
+		"@prisma/client": "^4.16.1",
+		"parse-nested-form-data": "^1.0.0"
 	}
 }
